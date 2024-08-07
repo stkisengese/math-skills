@@ -3,6 +3,7 @@ from statistics import mean, pstdev
 
 def read_population_data(filename):
     """This function reads population data from a text file."""
+
     try:
         with open(filename) as file:
             population_data = [float(line.strip()) for line in file]
@@ -20,6 +21,7 @@ def read_population_data(filename):
 
 def calculate_covariance(x, y):
     """Calculate the covariance between two variables."""
+
     n = len(x)
     mean_x = mean(x)
     mean_y = mean(y)
@@ -28,11 +30,17 @@ def calculate_covariance(x, y):
 
 def calculate_linear_regression(x, y):
     """Calculate the linear regression line (y = mx + b)."""
+    
     cov_xy = calculate_covariance(x, y)
     std_dev_x = pstdev(x)
     m = cov_xy / std_dev_x ** 2
     b = mean(y) - m * mean(x)
     return m, b
+
+def calculate_correlation_coeff(x, y):
+    """Calculate the correlation coefficient between two variables."""
+
+    return calculate_covariance(x, y) / (pstdev(x) * pstdev(y))
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -40,12 +48,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     population_data = read_population_data(sys.argv[1])
-    x_values = population_data  # Replace with your actual x values
-    y_values = population_data  # Replace with your actual y values
+    x_values = list(range(len(population_data)))  
+    y_values = population_data  
 
     slope, intercept = calculate_linear_regression(x_values, y_values)
     print(f"Linear Regression Line: y = {slope:.6f}x + {intercept:.6f}")
 
-    # Example: Calculate Pearson Correlation Coefficient
-    correlation_coefficient = calculate_covariance(x_values, y_values) / (std_dev_x * pstdev(y_values))
-    print(f"Pearson Correlation Coefficient: {correlation_coefficient:.10f}")
+    # Calculate Pearson Correlation Coefficient
+    correlation_coeff = calculate_correlation_coeff(x_values, y_values)
+    print(f"Pearson Correlation Coefficient: {correlation_coeff:.10f}")

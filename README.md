@@ -25,7 +25,7 @@ The Linear Regression Line is a straight line that best fits a set of data point
 
 ### 2. Pearson Correlation Coefficient
 
-The Pearson Correlation Coefficient (often denoted as $$r$$) quantifies the linear relationship between two variables. It ranges from -1 (perfect negative correlation) to 1 (perfect positive correlation). Key features include:
+The Pearson Correlation Coefficient (often denoted as *$r$*) quantifies the linear relationship between two variables. It ranges from -1 (perfect negative correlation) to 1 (perfect positive correlation). Key features include:
 
 - **Equation**:
   $$r = \frac{{\text{{covariance}}(x, y)}}{{\text{{std\_dev}}(x) \cdot \text{{std\_dev}}(y)}}$$
